@@ -1,5 +1,5 @@
 # Dockerfile - php-openresty
-FROM FROM haohuicu/alpine-php-fpm:1.2.7214
+FROM haohuicu/alpine-php-fpm:1.2.7214
 RUN	sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories  \  	
   && apk update \
   && apk upgrade \
@@ -14,7 +14,7 @@ RUN	sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
   && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
   && mkdir /root/.ssh \
-  && /usr/bin/ssh-keygen -A
+  && /usr/bin/ssh-keygen -A \
   && mkdir -p -m0755 /var/run/sshd \  
   #authorized_keys
   && echo root:root|chpasswd  
