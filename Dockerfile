@@ -18,9 +18,8 @@ RUN	sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   && mkdir -p -m0755 /var/run/sshd \  
   #authorized_keys
   && echo root:root|chpasswd  
-COPY authorized_keys ~/.ssh/authorized_keys
-RUN chown root:root ~/.ssh/authorized_keys  
-RUN chmod 600 ~/.ssh/authorized_keys  
+#COPY authorized_keys ~/.ssh/authorized_keys
+#RUN chown root:root ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys  
 # Copy supervisord configuration file
 COPY sshd.conf /etc/supervisor/conf.d/
 WORKDIR /usr/local/openresty/nginx/html/
