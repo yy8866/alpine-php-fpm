@@ -91,7 +91,7 @@ RUN set -xe; \
 	fi; \
 	\
 	apk del .fetch-deps
-COPY docker-php-ext-* docker-php-entrypoint /usr/local/bin/
+COPY docker-php* /usr/local/bin/
 #fixed chmod
 RUN chmod +x /usr/local/bin/docker-php*
 
