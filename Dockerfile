@@ -91,8 +91,9 @@ RUN set -xe; \
 	fi; \
 	\
 	apk del .fetch-deps
-
-COPY docker-php-source /usr/local/bin/
+COPY docker-php-ext-* docker-php-entrypoint /usr/local/bin/
+#fixed chmod
+RUN chmod +x /usr/local/bin/docker-php*
 
 RUN set -xe \
 	&& apk add --no-cache --virtual .build-deps \
@@ -169,10 +170,6 @@ RUN set -xe \
 	&& pecl update-channels \
 	&& rm -rf /tmp/pear ~/.pearrc
 
-COPY docker-php-ext-* docker-php-entrypoint /usr/local/bin/
-
-#fixed chmod
-RUN chmod +x /usr/local/bin/docker-php*
 
 # sodium was built as a shared module (so that it can be replaced later if so desired), so let's enable it too (https://github.com/docker-library/php/issues/598)
 RUN docker-php-ext-enable sodium
